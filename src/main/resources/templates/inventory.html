@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link th:href="@{/inventory-style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{/form}">Form</a>
+    <a th:href="@{/inventory}">Inventory</a>
+</div>
+<div th:if="${message}" class="message">
+    <p th:text="${message}"></p>
+</div>
+<div class="container">
+    <table id="table">
+        <tr>
+            <th>Category</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Order Date</th>
+            <th></th>
+        </tr>
+        <tr th:each="inventory:${inventoryList}">
+            <th th:text="${inventory.category}"></th>
+            <th th:text="${inventory.productName}"></th>
+            <th th:text="${'$'+inventory.price}"></th>
+            <th th:text="${'$'+inventory.discount}"></th>
+            <th th:text="${inventory.orderDate}"></th>
+            <th><a role="button" class="update" th:href="@{/form(id = ${inventory.id})}">Update</a></th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
